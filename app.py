@@ -85,13 +85,25 @@ def pilih_jadwal (film):
     harga_asli = film["Harga"] * jumlah
 
     if is_member:
-        diskon = harga_asli * 0.10
-        total = harga_asli - diskon
-        st.success(f"✅ Kamu member! Diskon 10% = -Rp {diskon:,.0f}")
+        if harga_asli >= 20000:
+            persen_diskon = 20
+        elif harga_asli >= 100000:
+            persen_diskon = 10
+        else:
+            persen_diskon = 5
     else:
-        diskon = 0
-        total = harga_asli
-        st.info("💡 Bukan member, tidak ada diskon.")
+        if harga_asli >= 200000:
+            persen_diskon = 10
+        else:
+            persen_diskon = 0
+    
+    diskon = harga_asli * (persen_diskon / 100)
+    total = harga_asli - diskon
+
+    if persen_diskon >0:
+        st.success(f"✅ Diskon {persen_diskon}% = -Rp {diskon:,.0f}")
+    else:
+        st.info("💡 Tidak ada diskon.")
 
     st.info(f"Total harga: Rp {total:,.0f}")
 
