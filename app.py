@@ -85,7 +85,7 @@ def pilih_jadwal (film):
     harga_asli = film["Harga"] * jumlah
 
     if is_member:
-        if harga_asli >= 20000:
+        if harga_asli >= 200000:
             persen_diskon = 20
         elif harga_asli >= 100000:
             persen_diskon = 10
